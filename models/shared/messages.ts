@@ -11,6 +11,21 @@ export class APIError extends Error {
     publicVersion() {
         return new PublicError(this);
     }
+    static errNotFound(properties?: any, internalProperties?: any) {
+        return new APIError("Resource not found", "The specified Resource does not exist", 404, properties, internalProperties);
+    }
+    static errInvalidQueryParameter(properties?: any, internalProperties?: any) {
+        return new APIError("Invalid Query Parameter", "One of the query parameters specified is invalid", 400, properties, internalProperties);
+    }
+    static errMissingBody(properties?: any, internalProperties?: any) {
+        return new APIError("Missing Body", "Missing Data in Request Body.", 400, properties, internalProperties);
+    }
+    static errServerError(properties?: any, internalProperties?: any) {
+        return new APIError("Internal Server Error", "Request could not be carried out.", 500, properties, internalProperties);
+    }
+    static errFileUplodadFailed(properties?: any, internalProperties?: any) {
+        return new APIError("File Upload Failed", "File upload failed.", 400, properties, internalProperties);
+    }
 }
 
 export class PublicError {
@@ -30,4 +45,16 @@ export class PublicInfo {
     constructor(public message: string,
                 public status: number,
                 public properties?: any) {};
+    static infoDeleted(properties?: any) {
+        return new PublicInfo("Resource Deleted", 204, properties);
+    }
+    static infoCreated(properties?: any) {
+        return new PublicInfo("Resource Created", 201, properties);
+    }
+    static infoUpdated(properties?: any) {
+        return new PublicInfo("Resource Updated", 201, properties);
+    }
+    static infoFileUploaded(properties?: any) {
+        return new PublicInfo("File Uploaded", 201, properties);
+    }
 }

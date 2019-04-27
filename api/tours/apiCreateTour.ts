@@ -5,8 +5,9 @@ import uuid from "uuid/v4";
 import { APIError, PublicInfo } from "../../models/shared/messages";
 
 export const apiCreateTour: RequestHandler = (req, res, next) => {
+    console.log(!req.body);
     if (!req.body) {
-        next(new APIError("Data missing", "No Data in Request Body.", 400))
+        next(APIError.errMissingBody())
     }
     const newTour = {
         id: uuid(),
@@ -19,5 +20,7 @@ export const apiCreateTour: RequestHandler = (req, res, next) => {
         img: []
     }
     DataStore.tours.push(newTour);
-    res.json(new PublicInfo("Tour added.", 200, {tour: newTour}));    
+
+    const msg = PublicInfo.infoCreated({tour: newTour});
+    res.status(msg.status).json(msg);    
 };

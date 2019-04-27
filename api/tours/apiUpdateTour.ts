@@ -18,9 +18,9 @@ export const apiUpdateTour: RequestHandler = (req, res, next) => {
             img: originalTour.img
         }
         DataStore.tours[tourIndex] = newTour;
-        res.json(new PublicInfo("Tour updated.", 200));
+        res.json(PublicInfo.infoUpdated());
     }
     else {
-        next(new APIError("Update Error", "Tour not found.", 400));
+        next(APIError.errNotFound())
     }
 };

@@ -14,11 +14,11 @@ export const apiUploadImage: RequestHandler = (req, res, next) => {
         upload(req, res, (err) => {
             if (err) {
                 console.log(err);
-                next(new APIError("File Upload Error", "File upload failed.", 400));
+                next(APIError.errFileUplodadFailed())
             }
             else {
                 DataStore.tours[tourIndex].img.push(req.file.filename);
-                res.json(new PublicInfo("File uploades.", 200));
+                res.json(PublicInfo.infoFileUploaded());
             }
         });
     }
