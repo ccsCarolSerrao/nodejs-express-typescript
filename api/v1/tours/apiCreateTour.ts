@@ -1,8 +1,8 @@
-import { DataStore } from "../../data/data";
+import { DataStore } from "../../../data/data";
 import { RequestHandler } from "express";
 
 import uuid from "uuid/v4";
-import { APIError, PublicInfo } from "../../models/shared/messages";
+import { APIError, PublicInfo } from "../../../models/shared/messages";
 
 export const apiCreateTour: RequestHandler = (req, res, next) => {
     console.log(!req.body);

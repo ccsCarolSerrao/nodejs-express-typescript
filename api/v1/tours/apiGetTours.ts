@@ -1,8 +1,8 @@
-import { DataStore } from "../../data/data";
+import { DataStore } from "../../../data/data";
 import { RequestHandler } from "express";
 
-import {TourSummary} from "../../models/shared/tourSummary";
-import { TourFilters } from "../../models/shared/tourFilters";
+import {TourSummary} from "../../../models/shared/tourSummary";
+import { TourFilters } from "../../../models/shared/tourFilters";
 
 export const apiGetTours: RequestHandler = (req, res, next) => {
     const filters = new TourFilters(req.query);

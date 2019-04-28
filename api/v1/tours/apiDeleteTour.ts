@@ -1,5 +1,5 @@
-import { DataStore } from "../../data/data";
-import { PublicInfo, APIError } from "../../models/shared/messages";
+import { DataStore } from "../../../data/data";
+import { PublicInfo, APIError } from "../../../models/shared/messages";
 import { RequestHandler } from "express-serve-static-core";
 
 export const apiDeleteTour: RequestHandler = (req, res, next) => {
